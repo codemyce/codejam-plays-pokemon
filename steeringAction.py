@@ -1,13 +1,12 @@
 import math
 
-wristCoords = dict()
 
 def read_definitions(defs):
     wristLindex = defs.index('WRISTL')
     wristRindex = defs.index('WRISTR')
-    global wristCoords = {'WRISTL':wristLindex, 'WRISTR':wristRindex}
+    return {'WRISTL':wristLindex, 'WRISTR':wristRindex}
 
-def steering(defs, n):
+def steering(wristCoords, n):
 
     turn_left = False
     turn_right = False
