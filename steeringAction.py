@@ -11,6 +11,8 @@ def steering(defs, n):
 
     turn_left = False
     turn_right = False
+    
+    #Angle variables
     angle = 0
 
     left_wristX = n[wristCoords['WRISTL']]
@@ -25,9 +27,9 @@ def steering(defs, n):
     #Underhand Assessment
     if vectorOfHand[0] > 0:
         angle = (math.acos(vectorOfHand[0]/distanceOfHands) * (180/math.pi))
-        if vectorOfHand[1] > 0 and angle >= 10:
+        if vectorOfHand[1] > 0 and angle >= thresholdAngle:
             turn_left = True
-        elif vectorOfHand[1] < 0 and angle >= 10:
+        elif vectorOfHand[1] < 0 and angle >= thresholdAngle:
             turn_right = True
     #Overhand Asssessment
     elif vectorOfHand[0] < 0:
@@ -42,4 +44,4 @@ def steering(defs, n):
         elif vectorOfHand[1] < 0:
             turn_right = True
             
-    return(turn_left, turn_right)
+    return(turn_right, turn_left)
