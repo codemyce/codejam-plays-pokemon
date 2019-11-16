@@ -5,7 +5,7 @@ wristCoords = dict()
 def read_definitions(defs):
     wristLindex = defs.index('WRISTL')
     wristRindex = defs.index('WRISTR')
-    wristCoords = ['WRISTL':wristLindex, 'WRISTR':wristRindex]
+    global wristCoords = {'WRISTL':wristLindex, 'WRISTR':wristRindex}
 
 def steering(defs, n):
 
@@ -15,8 +15,8 @@ def steering(defs, n):
     #Angle variables
     angle = 0
     thresholdAngle = 5
-    left_wristX = n[wristCoords['WRISTL']]
-    left_wristY = n[wristCoords['WRISTL']+1]
+    left_wristX = n[2*wristCoords['WRISTL']]
+    left_wristY = n[2*wristCoords['WRISTL']+1]
 
     right_wristX = n[wristCoords['WRISTR']]
     right_wristY = n[wristCoords['WRISTR']+1]
