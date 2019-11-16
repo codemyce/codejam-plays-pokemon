@@ -2,28 +2,35 @@ import keyboard
 from pywinauto import Application
 import time
 import string
-from threading import *
-
+import msvcrt
+import readchar
 # open up the emulator and load up the rom
 
 emulator = Application().start("bsnes-hd_beta9.exe")
+print('hello')
 keyboard.press_and_release('alt, enter, down, enter, enter')
-time.sleep(5)
 
-# listening for keyboard activities
-keys = list(string.ascii_lowercase)
+while True:
+    try:
+        if keyboard.is_pressed('left'):
+            print('left key is pressed')
+        elif keyboard.is_pressed('right'):
+            print('right key is pressed')
+        elif keyboard.is_pressed('u'):
+            print('B button is pressed')
+        elif keyboard.is_pressed('y'):
+            print('A button is pressed')
+        else:
+            pass
+    except:
+        break
 
-def listen(key):
-    while True:
-        keyboard.wait(key)
-        print("[+] Pressed", key)
-
-
+"""
 threads = [Thread(target=listen, kwargs={"key": key}) for key in keys]
 for thread in threads:
     thread.start()
 
-"""
+
     player 1 controls:  up = up
                         down = down
                         left = left
