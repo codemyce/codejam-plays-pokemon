@@ -17,7 +17,7 @@ def steering(definitionArray, n):
     
     #Angle variables
     angle = 0
-    thresholdAngle = 5
+    thresholdAngle = 14
     
     #Position variable
     left_wristX = n[(2*LWristIndex)]
