@@ -1,24 +1,29 @@
 import math
 
-
-def read_definitions(defs):
-    wristLindex = defs.index('LWRIST')
-    wristRindex = defs.index('RWRIST')
-    return {'LWRIST':wristLindex, 'RWRIST':wristRindex}
-
-def steering(wristCoords, n):
-
+def steering(definitionArray, n):
+    LWristIndex = 0
+    RWristIndex = 0
+    for k in definitionArray:
+        if definitionArray[k] == 'LWRIST':
+            LWristIndex = k
+        elif definitionArray[k] == 'RWRIST':
+            RWristIndex = k
+        else:
+            continue
+    
+    #Return variables
     turn_left = False
     turn_right = False
     
     #Angle variables
     angle = 0
     thresholdAngle = 5
-    left_wristX = n[2*wristCoords['LWRIST']]
-    left_wristY = n[2*wristCoords['LWRIST']+1]
-
-    right_wristX = n[wristCoords['RWRIST']]
-    right_wristY = n[wristCoords['RWRIST']+1]
+    
+    #Position variable
+    left_wristX = n[(2*LWristIndex)]
+    left_wristY = n[(2*LWristIndex + 1)]
+    right_wristX = n[(2*RWristIndex)]
+    right_wristY = n[(2*RWristIndex + 1)]
 
     #Calculate the distane between two hands for calculating angle
     vectorOfHand = (left_wristX - right_wristX, left_wristY - right_wristY)
