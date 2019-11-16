@@ -1,24 +1,23 @@
-import json
-import pprint
 import math
 
-def json_r (filename):
-    with open(filename) as f_in:
-        return (json.load(f_in))
+wristCoords = dict()
 
-def steering(n):
-    pose_estimation = json_r(n)
-    man_pose = pose_estimation['frames'][0]['persons'][0]
+def read_definitions(defs):
+    wristLindex = defs.index('WRISTL')
+    wristRindex = defs.index('WRISTR')
+    wristCoords = ['WRISTL':wristLindex, 'WRISTR':wristRindex]
+
+def steering(defs, n):
 
     turn_left = False
     turn_right = False
     angle = 0
 
-    left_wristX = man_pose['pose2d']['joints'][30]
-    left_wristY = man_pose['pose2d']['joints'][31]
+    left_wristX = n[wristCoords['WRISTL']]
+    left_wristY = n[wristCoords['WRISTL']+1]
 
-    right_wristX = man_pose['pose2d']['joints'][20]
-    right_wristY = man_pose['pose2d']['joints'][21]
+    right_wristX = n[wristCoords['WRISTR']]
+    right_wristY = n[wristCoords['WRISTR']+1]
 
     #Calculate the distane between two hands for calculating angle
     vectorOfHand = (left_wristX - right_wristX, left_wristY - right_wristY)
