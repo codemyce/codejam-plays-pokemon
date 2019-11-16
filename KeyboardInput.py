@@ -4,24 +4,27 @@ import time
 import string
 from threading import *
 
-# i use the bsnes emulator from here
 # open up the emulator and load up the rom
 
 emulator = Application().start("bsnes-hd_beta9.exe")
 keyboard.press_and_release('alt, enter, down, enter, enter')
 time.sleep(5)
 
-# listenning keyboard activitess
+# listenning for keyboard activitess
 keys = list(string.ascii_lowercase)
 
 def listen(key):
     while True:
+        # hold down the B button to always accelerate
+        keyboard.press('o')
+        keyboard.press('u')
         keyboard.wait(key)
         print("[+] Pressed", key)
 
 threads = [Thread(target=listen, kwargs={"key": key}) for key in keys]
 for thread in threads:
        thread.start()
+
 
 """
     player 1 controls:  up = up
