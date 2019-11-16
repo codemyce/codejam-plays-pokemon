@@ -5,12 +5,12 @@ SuperFamicom
       Down: 0x1/0/87
       Left: 0x1/0/88
       Right: 0x1/0/89
-      B: 0x1/0/57
-      A: 0x1/0/39
-      Y: 0x1/0/53
-      X: 0x1/0/38
-      L: 0x1/0/17
-      R: 0x1/0/18
+      B: 0x1/0/55
+      A: 0x1/0/59
+      Y: 0x1/0/44
+      X: 0x1/0/42
+      L: 0x1/0/21
+      R: 0x1/0/22
       Select
       Start
       TurboB
@@ -28,16 +28,16 @@ SuperFamicom
       TurboRight
   ControllerPort2: Gamepad
     Gamepad
-      Up
-      Down
-      Left
-      Right
-      B
-      A
-      Y
-      X
-      L
-      R
+      Up: 0x1/0/57
+      Down: 0x1/0/53
+      Left: 0x1/0/35
+      Right: 0x1/0/38
+      B: 0x1/0/49
+      A: 0x1/0/43
+      Y: 0x1/0/46
+      X: 0x1/0/45
+      L: 0x1/0/23
+      R: 0x1/0/24
       Select
       Start
       TurboB
@@ -247,8 +247,8 @@ Hotkey
   ToggleFullscreenMode
   ToggleMouseCapture
   ToggleCheatCodes
-  SaveState: 0x1/0/91
-  LoadState: 0x1/0/90
+  SaveState: None
+  LoadState: None
   LoadUndoState
   LoadRedoState
   IncrementStateSlot
