@@ -15,9 +15,6 @@ keys = list(string.ascii_lowercase)
 
 def listen(key):
     while True:
-        # hold down the B button to always accelerate
-        keyboard.press('o')
-        keyboard.press('u')
         keyboard.wait(key)
         print("[+] Pressed", key)
 
