@@ -1,0 +1,46 @@
+System
+  CPU
+    Version: 2
+  PPU1
+    Version: 1
+    VRAM
+      Size: 65536
+  PPU2
+    Version: 3
+Video
+  BlurEmulation: false
+  ColorEmulation: false
+Hacks
+  PPU
+    Fast: true
+    NoSpriteLimit: true
+    Mode7
+      Scale: 2
+      Perspective: 1
+      Widescreen: 72
+      Wsbg1: 16
+      Wsbg2: 16
+      Wsbg3: 16
+      Wsbg4: 16
+      Wsobj: 0
+      Igwin: 1
+      Igwinx: 128
+      BgGrad: 4
+      WindRad: 0
+      WsMode: 1
+      WsBgCol: 1
+      UnintrMode: 1
+      UnintrTop: 10
+      UnintrBottom: 10
+      UnintrLeft: 20
+      UnintrRight: 20
+      WsMarker: 0
+      WsMarkerAlpha: 1
+      Supersample: 1
+      Mosaic: 1
+  DSP
+    Fast: true
+    Cubic: false
+  Coprocessors
+    HLE: true
+    DelayedSync: true
