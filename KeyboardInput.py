@@ -10,7 +10,7 @@ emulator = Application().start("bsnes-hd_beta9.exe")
 keyboard.press_and_release('alt, enter, down, enter, enter')
 time.sleep(5)
 
-# listenning for keyboard activitess
+# listening for keyboard activities
 keys = list(string.ascii_lowercase)
 
 def listen(key):
@@ -18,10 +18,10 @@ def listen(key):
         keyboard.wait(key)
         print("[+] Pressed", key)
 
+
 threads = [Thread(target=listen, kwargs={"key": key}) for key in keys]
 for thread in threads:
-       thread.start()
-
+    thread.start()
 
 """
     player 1 controls:  up = up
@@ -34,20 +34,6 @@ for thread in threads:
                         X = h 
                         Y = j
                         
-    player 2 controls:  up = w
-                        down = s
-                        left = a
-                        right = d
-                        
-                        A = i
-                        B = o
-                        X = k
-                        Y = l
                         
     Will have to load the config to bsnes first !
 """
-
-
-
-
-
