@@ -43,4 +43,4 @@ def steering(wristCoords, n):
         elif vectorOfHand[1] < 0:
             turn_right = True
             
-    return(turn_right, turn_left)
+    return(turn_left, turn_right)
