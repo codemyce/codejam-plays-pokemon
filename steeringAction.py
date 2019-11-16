@@ -1,24 +1,29 @@
-import json
-import pprint
 import math
 
-def json_r (filename):
-    with open(filename) as f_in:
-        return (json.load(f_in))
-
-def steering(n):
-    pose_estimation = json_r(n)
-    man_pose = pose_estimation['frames'][0]['persons'][0]
-
+def steering(definitionArray, n):
+    LWristIndex = 0
+    RWristIndex = 0
+    for k in definitionArray:
+        if definitionArray[k] == 'LWRIST':
+            LWristIndex = k
+        elif definitionArray[k] == 'RWRIST':
+            RWristIndex = k
+        else:
+            continue
+    
+    #Return variables
     turn_left = False
     turn_right = False
+    
+    #Angle variables
     angle = 0
-
-    left_wristX = man_pose['pose2d']['joints'][30]
-    left_wristY = man_pose['pose2d']['joints'][31]
-
-    right_wristX = man_pose['pose2d']['joints'][20]
-    right_wristY = man_pose['pose2d']['joints'][21]
+    thresholdAngle = 5
+    
+    #Position variable
+    left_wristX = n[(2*LWristIndex)]
+    left_wristY = n[(2*LWristIndex + 1)]
+    right_wristX = n[(2*RWristIndex)]
+    right_wristY = n[(2*RWristIndex + 1)]
 
     #Calculate the distane between two hands for calculating angle
     vectorOfHand = (left_wristX - right_wristX, left_wristY - right_wristY)
@@ -26,9 +31,9 @@ def steering(n):
     #Underhand Assessment
     if vectorOfHand[0] > 0:
         angle = (math.acos(vectorOfHand[0]/distanceOfHands) * (180/math.pi))
-        if vectorOfHand[1] > 0 and angle >= 10:
+        if vectorOfHand[1] > 0 and angle >= thresholdAngle:
             turn_left = True
-        elif vectorOfHand[1] < 0 and angle >= 10:
+        elif vectorOfHand[1] < 0 and angle >= thresholdAngle:
             turn_right = True
     #Overhand Asssessment
     elif vectorOfHand[0] < 0:
@@ -43,4 +48,4 @@ def steering(n):
         elif vectorOfHand[1] < 0:
             turn_right = True
             
-    return(turn_left, turn_right)
+    return(turn_right, turn_left)
