@@ -5,6 +5,9 @@ import string
 import threading
 # open up the emulator and load up the rom
 
+# INPUT ACTION INTO KEYBOARD SIGNAL
+
+
 # 0 is not pressed, 1 is currently presed, 2 is need to press, 3 is need to release
 # Space and q are special, if pressed gets set to 1, this is the change state button/exits
 keys = {
@@ -105,10 +108,10 @@ def keyboard_listener():
                 curState = STATES['driving_single']
 
 #------------------------------#
-            if keys[key] != 0:
-                keys[key] = 0
-                print(key + " pressed!\n")
-            continue
+            # if keys[key] != 0:
+            #     keys[key] = 0
+            #     print(key + " pressed!\n")
+            # continue
 #------------------------------#
 
             # Lets try this non-hardcoded thing first
@@ -131,6 +134,7 @@ def keyboard_listener():
                     # Send release signal key
                     keyboard.send(key, do_release=True)
                     keys[key] == 0
+
 
 if __name__ == '__main__':
     # Set up keyboard inputs

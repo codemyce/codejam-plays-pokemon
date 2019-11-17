@@ -1,5 +1,12 @@
 import math
 
+# RAW DETAILS INTO REQUESTED ACTION
+
+def read_definitions(defs):
+    wristLindex = defs.index('LWRIST')
+    wristRindex = defs.index('RWRIST')
+    return {'LWRIST':wristLindex, 'RWRIST':wristRindex}
+
 def steering(definitionArray, n):
     LWristIndex = 0
     RWristIndex = 0
