@@ -1,6 +1,6 @@
 # Copyright (c) 2019 wrnch Inc.
 # All rights reserved
-​
+
 from __future__ import print_function, division
 ​
 import argparse
