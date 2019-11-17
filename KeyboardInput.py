@@ -7,82 +7,26 @@ import threading
 
 # INPUT ACTION INTO KEYBOARD SIGNAL
 
-# Either 1 or 0, 1 indicates change needed
-p1 = {
-    'a': 0,
-    'b': 0,
-    'left': 0,
-    'right': 0,
-    'up': 0,
-    'down': 0,
-    'lTrigger': 0,
-    'rTrigger': 0,
-    'x': 0,
-    'y': 0,
-    'select': 0,
-    'start': 0
-}
-p2 = {
-    'a': 0,
-    'b': 0,
-    'left': 0,
-    'right': 0,
-    'up': 0,
-    'down': 0,
-    'lTrigger': 0,
-    'rTrigger': 0,
-    'x': 0,
-    'y': 0,
-    'select': 0,
-    'start': 0
-}
-updateKeys = False
-
-# Update item
-def updateItem(index, player):
-    global p1, p2, updateKeys
-    players = [p1,p2]
-
-    try:
-        players[player][index] = 1
-        updateKeys = True
-    except:
-        pass
-
-def readItem():
-    global p1, p2, updateKeys
-    for key in p1.keys():
-        if p1[key] == 1:
-            p1[key] = 0
-            # Trigger action based on which key
-
-    # Same thing but for player 2
-    for key in p1.keys():
-        if p1[key] == 1:
-            p1[key] = 0
-            # Trigger action based on which key
-
-
-
 
 # 0 is not pressed, 1 is currently presed, 2 is need to press, 3 is need to release
 # Space and q are special, if pressed gets set to 1, this is the change state button/exits
-# keys = {
-#     'a': 0,
-#     'b': 0,
-#     'left': 0,
-#     'right': 0,
-#     'up': 0,
-#     'down': 0,
-#     'lTrigger': 0,
-#     'rTrigger': 0,
-#     'x': 0,
-#     'y': 0,
-#     'select': 0,
-#     'start': 0,
-#     'space': 0,
-#     'q': 0
-# }
+keys = {
+    'a': 0,
+    'b': 0,
+    'left': 0,
+    'right': 0,
+    'up': 0,
+    'down': 0,
+    'lTrigger': 0,
+    'rTrigger': 0,
+    'x': 0,
+    'y': 0,
+    'select': 0,
+    'start': 0,
+    'space': 0,
+    'q': 0
+}
+updateKeys = False
 
 STATES = {
     'main_menu' : 0,
