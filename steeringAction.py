@@ -1,10 +1,24 @@
 import math
 
+# RAW DETAILS INTO REQUESTED ACTION
+
 
 def read_definitions(defs):
     wristLindex = defs.index('LWRIST')
     wristRindex = defs.index('RWRIST')
-    return {'LWRIST': wristLindex, 'RWRIST': wristRindex}
+    return {'LWRIST':wristLindex, 'RWRIST':wristRindex}
+
+# def steering(definitionArray, n):
+#     LWristIndex = 0
+#     RWristIndex = 0
+#     for k in definitionArray:
+#         if definitionArray[k] == 'LWRIST':
+#             LWristIndex = k
+#         elif definitionArray[k] == 'RWRIST':
+#             RWristIndex = k
+#         else:
+#             continue
+#     return {'LWRIST': wristLindex, 'RWRIST': wristRindex}
 
 
 def steering(wristCoords, n):
@@ -44,5 +58,3 @@ def steering(wristCoords, n):
             turn_right = True
 
     return (turn_right, turn_left, angle)
-    Collapse
-
