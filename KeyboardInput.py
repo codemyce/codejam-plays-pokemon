@@ -54,14 +54,16 @@ def updateItem(index, player):
 
 def readItem():
     global p1, p2, updateKeys
+
     for key in p1.keys():
         if p1[key] == 1:
             p1[key] = 0
             # Trigger action based on which key
             if key == 'a':
-
+                pass 
+            
     # Same thing but for player 2
-    for key in p1.keys():
+    for key in p2.keys():
         if p1[key] == 1:
             p1[key] = 0
             # Trigger action based on which key
