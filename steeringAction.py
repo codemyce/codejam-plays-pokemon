@@ -8,19 +8,6 @@ def read_definitions(defs):
     wristRindex = defs.index('RWRIST')
     return {'LWRIST':wristLindex, 'RWRIST':wristRindex}
 
-# def steering(definitionArray, n):
-#     LWristIndex = 0
-#     RWristIndex = 0
-#     for k in definitionArray:
-#         if definitionArray[k] == 'LWRIST':
-#             LWristIndex = k
-#         elif definitionArray[k] == 'RWRIST':
-#             RWristIndex = k
-#         else:
-#             continue
-#     return {'LWRIST': wristLindex, 'RWRIST': wristRindex}
-
-
 def steering(wristCoords, n):
     turn_left = False
     turn_right = False
