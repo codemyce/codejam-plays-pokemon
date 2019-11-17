@@ -102,3 +102,18 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.vscode/settings.json
+settings.bml
+
+# Custom
+*.zip
+
+# keep sensitive files out of commits!!!
+database/
+firmware/
+shaders/
+*.exe
+*.bml
+*.sfc
+*bsnes*
+*.srm

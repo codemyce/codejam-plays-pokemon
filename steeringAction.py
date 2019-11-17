@@ -1,39 +1,38 @@
 import math
 
-wristCoords = dict()
 
 def read_definitions(defs):
-    wristLindex = defs.index('WRISTL')
-    wristRindex = defs.index('WRISTR')
-    wristCoords = ['WRISTL':wristLindex, 'WRISTR':wristRindex]
+    wristLindex = defs.index('LWRIST')
+    wristRindex = defs.index('RWRIST')
+    return {'LWRIST': wristLindex, 'RWRIST': wristRindex}
 
-def steering(defs, n):
 
+def steering(wristCoords, n):
     turn_left = False
     turn_right = False
-    
-    #Angle variables
+
+    # Angle variables
     angle = 0
-    thresholdAngle = 5
-    left_wristX = n[wristCoords['WRISTL']]
-    left_wristY = n[wristCoords['WRISTL']+1]
+    thresholdAngle = 14
+    left_wristX = n[2 * wristCoords['LWRIST']]
+    left_wristY = n[2 * wristCoords['LWRIST'] + 1]
 
-    right_wristX = n[wristCoords['WRISTR']]
-    right_wristY = n[wristCoords['WRISTR']+1]
+    right_wristX = n[2 * wristCoords['RWRIST']]
+    right_wristY = n[2 * wristCoords['RWRIST'] + 1]
 
-    #Calculate the distane between two hands for calculating angle
+    # Calculate the distane between two hands for calculating angle
     vectorOfHand = (left_wristX - right_wristX, left_wristY - right_wristY)
-    distanceOfHands = math.sqrt(vectorOfHand[0]**2 + vectorOfHand[1]**2)
-    #Underhand Assessment
+    distanceOfHands = math.sqrt(vectorOfHand[0] ** 2 + vectorOfHand[1] ** 2)
+    # Underhand Assessment
     if vectorOfHand[0] > 0:
-        angle = (math.acos(vectorOfHand[0]/distanceOfHands) * (180/math.pi))
+        angle = (math.acos(vectorOfHand[0] / distanceOfHands) * (180 / math.pi))
         if vectorOfHand[1] > 0 and angle >= thresholdAngle:
             turn_left = True
         elif vectorOfHand[1] < 0 and angle >= thresholdAngle:
             turn_right = True
-    #Overhand Asssessment
+    # Overhand Asssessment
     elif vectorOfHand[0] < 0:
-        angle = math.acos(-vectorOfHand[0]/distanceOfHands) * (180/math.pi)
+        angle = math.acos(-vectorOfHand[0] / distanceOfHands) * (180 / math.pi)
         if vectorOfHand[1] > 0 and angle < 90 and angle > 60:
             turn_left = True
         if vectorOfHand[1] < 0 and angle < 90 and angle > 60:
@@ -43,5 +42,7 @@ def steering(defs, n):
             turn_left = True
         elif vectorOfHand[1] < 0:
             turn_right = True
-            
-    return(turn_right, turn_left)
+
+    return (turn_right, turn_left, angle)
+    Collapse
+
