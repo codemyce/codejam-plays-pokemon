@@ -16,7 +16,7 @@ if __name__ == '__main__':
     KeyboardInput.kill = True
 
     # Start and run engine that will run comp vision
-    # PoseEstimation.main(PoseEstimation.create_parser().parse_args())
+    PoseEstimation.main(PoseEstimation.create_parser().parse_args())
 
     # set kill thread
     KeyboardInput.kill = True
