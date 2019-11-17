@@ -116,3 +116,4 @@ shaders/
 *.bml
 *.sfc
 *bsnes*
+*.srm
