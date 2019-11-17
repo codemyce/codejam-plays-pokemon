@@ -1,9 +1,7 @@
 import keyboard
 from pywinauto import Application
 import time
-import string
 import threading
-# open up the emulator and load up the rom
 
 # 0 is not pressed, 1 is currently presed, 2 is need to press, 3 is need to release
 # Space and q are special, if pressed gets set to 1, this is the change state button/exits
