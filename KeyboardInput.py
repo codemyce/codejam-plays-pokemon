@@ -141,6 +141,7 @@ def keyboard_listener():
     # updateKeys = False
     global ALL_STATE_EXCEPTIONS
     global curState
+    global kill
 
     # Start listener
     while True:
