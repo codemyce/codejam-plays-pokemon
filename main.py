@@ -13,6 +13,11 @@ if __name__ == '__main__':
     task = KeyboardInput.keyboard_listener
     t = threading.Thread(target=task)
     t.start()
+    KeyboardInput.kill = True
 
     # Start and run engine that will run comp vision
-    PoseEstimation.main(PoseEstimation.create_parser().parse_args())
+    # PoseEstimation.main(PoseEstimation.create_parser().parse_args())
+
+    # set kill thread
+    KeyboardInput.kill = True
+    t.join()

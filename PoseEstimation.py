@@ -15,16 +15,6 @@ from visualizer import Visualizer
 from utils import videocapture_context
 ​
 import steeringAction
-# ​
-# import keyboard
-# from pywinauto import Application
-# import time
-# import string
-# import threading
-# import KeyboardInput
-# LEFT = 'left'
-# RIGHT = 'right'
-​
 ​
 def annotate_predicted_classes(visualizer,
                                side,
