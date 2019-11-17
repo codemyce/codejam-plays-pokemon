@@ -2,10 +2,13 @@ import keyboard
 from pywinauto import Application
 import time
 import threading
-
 # 0 is not pressed, 1 is currently presed, 2 is need to press, 3 is need to release
 # Space and q are special, if pressed gets set to 1, this is the change state button/exits
-keys = {
+# INPUT ACTION INTO KEYBOARD SIGNAL
+
+# Either 1 or 0, 1 indicates change needed
+p1 = {
+
     'a': 0,
     'b': 0,
     'left': 0,
@@ -17,11 +20,87 @@ keys = {
     'x': 0,
     'y': 0,
     'select': 0,
-    'start': 0,
-    'space': 0,
-    'q': 0
+    'start': 0
+}
+p2 = {
+    'a': 0,
+    'b': 0,
+    'left': 0,
+    'right': 0,
+    'up': 0,
+    'down': 0,
+    'lTrigger': 0,
+    'rTrigger': 0,
+    'x': 0,
+    'y': 0,
+    'select': 0,
+    'start': 0
 }
 updateKeys = False
+
+# Update item
+def updateItem(index, player):
+    global p1, p2, updateKeys
+    players = [p1,p2]
+
+    try:
+        players[player][index] = 1
+        updateKeys = True
+    except:
+        pass
+
+def readItem():
+    global p1, p2, updateKeys
+    for key in p1.keys():
+        if p1[key] == 1:
+            p1[key] = 0
+            if (key == 'left'):
+                keyboard.send('left', do_press=True, do_release=True) # turn left
+            elif(key == 'right'):
+                keyboard.send('right', do_press=True, do_release=True)  #turn right
+            elif(key == 'b'):
+                keyboard.send('u', do_press=True, do_release=True) # B button for acceleration
+            elif(key == 'a'):
+                keyboard.send('y', do_press=True, do_release=True) # A button for items
+            else:
+                pass
+            # Trigger action based on which key
+
+    # Same thing but for player 2
+    for key in p2.keys():
+        if p2[key] == 1:
+            p2[key] = 0
+            if (key == 'left'):
+                keyboard.send('a', do_press=True, do_release=True) # turn left
+            elif(key =='right'):
+                keyboard.send('d', do_press=True, do_release=True)  # turn right
+            elif(key == 'b'):
+                keyboard.send('o', do_press=True, do_release=True) # B button for acceleration
+            elif(key == 'a'):
+                keyboard.send('i', do_press=True, do_release=True) # A button for items
+            else:
+                pass
+            # Trigger action based on which key
+            #
+
+# 0 is not pressed, 1 is currently presed, 2 is need to press, 3 is need to release
+# Space and q are special, if pressed gets set to 1, this is the change state button/exits
+# keys = {
+#     'a': 0,
+#     'b': 0,
+#     'left': 0,
+#     'right': 0,
+#     'up': 0,
+#     'down': 0,
+#     'lTrigger': 0,
+#     'rTrigger': 0,
+#     'x': 0,
+#     'y': 0,
+#     'select': 0,
+#     'start': 0,
+#     'space': 0,
+#     'q': 0
+# }
 
 STATES = {
     'main_menu' : 0,
@@ -102,13 +181,6 @@ def keyboard_listener():
             if key == 'space' and keys[key] == 1:
                 curState = STATES['driving_single']
 
-#------------------------------#
-            if keys[key] != 0:
-                keys[key] = 0
-                print(key + " pressed!\n")
-            continue
-#------------------------------#
-
             # Lets try this non-hardcoded thing first
             if keys[key] == 2:
                 # Press requested
@@ -130,9 +202,10 @@ def keyboard_listener():
                     keyboard.send(key, do_release=True)
                     keys[key] == 0
 
+
 if __name__ == '__main__':
     # Set up keyboard inputs
-    setup_keyboard('bsnes-hd_beta9_windows\\bsnes-hd_beta9.exe')
+    setup_keyboard('bsnes-hd_beta9.exe')
 
     # Start thread for listening to other input
     task = keyboard_listener
